@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mini calculator</title>
+<script language="javascript">
+function calculate() {
+  var a = document.frmCal.txta;
+  var b = document.frmCal.txtb;
+  var o = document.frmCal.slto;
+  var r = document.frmCal.txtr;
+
+  var numberFormat = /^[+-]?\d+(\.\d+)?$/;
+
+  if (numberFormat.test(a.value) == false) {
+    alert ("'a' must be a number!");
+    a.focus();
+  } else if (numberFormat.test(b.value) == false) {
+    alert ("'b' must be a number!");
+    b.focus();
+  } else {
+    if (o.value == "+") {
+      r.value = parseFloat(a.value) + parseFloat(b.value);
+    } else if (o.value == "-") {
+      r.value = parseFloat(a.value) - parseFloat(b.value);
+    } else if (o.value == "*") {
+      r.value = parseFloat(a.value) * parseFloat(b.value);
+    } else if (o.value == "/") {
+      if (parseFloat(b.value) != 0) {
+        r.value = parseFloat(a.value) / parseFloat(b.value);
+      } else {
+        alert("Cannot divide by zero!");
+        b.focus();
+      }
+    }
+  }
+}
+</script>
+</head>
+<body>
+<form name="frmCal">
+  <table border="0" align="center">
+    <tr>
+      <td>Number a:</td>
+      <td><input type="text" name="txta" size="20"></td>
+    </tr>
+    <tr>
+      <td>Number b:</td>
+      <td><input type="text" name="txtb" size="20"></td>
+    </tr>
+    <tr>
+      <td>Operator:</td>
+      <td>
+        <select name="slto">
+          <option value="+">Addition (+)</option>
+          <option value="-">Subtraction (-)</option>
+          <option value="*">Multiplication (*)</option>
+          <option value="/">Division (/)</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Result:</td>
+      <td><input type="text" name="txtr" size="20" readonly></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="button" value="Calculate" onclick="calculate()"></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
